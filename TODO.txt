@@ -1,12 +1,44 @@
 TODO List for OSPy
 
-Diagnose "no location error" in weather based watering level.
+==Diagnose "no location error" in weather based watering level plugin weather.py.
+1. Could not find location with zip code
+2. Could not find location with city
+3. Found location with geographic coordinates
+4. Works with City,State abbreviation
+5. Tried city again works.
+6. Reverted to geographic coordinates
+Cause unresolved
 
-Add text describing "usage" under Stations settings.
+Features:
+===========
+===Add text describing "usage" under Stations settings.
 
-Find watering months used by water company.
-	Sewage rates are set by consumption in non-watering months.
+===Add field for notes on the respective pages
+Would like an area where one can record notes about setup, adjustments, or other information which you might want to reference in the future.
+
+===Compressor blowout plugin for winterization
+==Create plugin which can be used to automatically run a blowout routine
+One should not have to waste an afternoon winterizing your sprinkler system when your sprinkler controller can do it for you! Connect the compressor, select the program, and go do something else.
+
+Typical consumer grade compressors have tanks which are too small, low flow, and are not designed for high duty cycles necessary for sprinkler blowout work.
+Using the controller to automatically run the blowout process and by deploying some additional tricks the limitations of consumer compressors may be overcome.
+
+For system blowout run time is not so important as the number of cycles required to remove the water.
+The number of cycles needed will depend on the zone and the compressor used.
+At minimum each cycle will have a timed interval where the valve is open and a delay to allow for pressure recovery and cooling time for the compressor.
+The number of cycles per station, station open time, and cycle delay (rest time) will have to be set empirically by the user.
+
+An enhanced system could use pressure signaling to close the station valve when the pressure drops below some threshold. The station valve may be opened again when the presure recovers and/or the delay timer has expired.
+
+The addition of a pressure regulator between the compressor and blowout port would add to the tank volume, first between the tank and regulator, then beteween the blowout port and the station valve. With this larger volume pressure recovery will take longer and one may need to impose a maximum duty cycle limitation on the compressor via a run relay.
+
+TODO - Work out logic and see if a conventional compressor pressure pressure control switch would be suitable for signalling and/or run relay.
 
 
-Compressor blowout plugin
+Tasks:
+===========
+==Find watering months used by water company.
+Sewage rates are set by consumption in non-watering months.
+
+
 
