@@ -1,0 +1,12 @@
+TODO List for OSPy
+
+Diagnose "no location error" in weather based watering level.
+
+Add text describing "usage" under Stations settings.
+
+Find watering months used by water company.
+	Sewage rates are set by consumption in non-watering months.
+
+
+Compressor blowout plugin
+
