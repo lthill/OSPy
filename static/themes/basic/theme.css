@@ -30,7 +30,7 @@ div, p {
 #lastRun {color:gray;}
 #stations {width:100%;}
 #pluginMenu{display: none; z-index: 99}
-.program {line-height:22px}
+.program {line-height:24px}
 .strike {text-decoration:line-through;}
 .progstation_on {background-color:#9AFA9A; color:black; font-size:10pt}
 .progstation_off {background-color:white; color:lightgray; font-size:10pt}
@@ -353,7 +353,7 @@ button.toggle.narrow span.toggleright, button.toggle.narrow span.toggleleft, .bu
 button.pushon.on, .button.pushon.on {
     font-weight: 700;
 }
-.program .button.toggle {float:right; width:130px; margin:0px !important; padding:0px; background-color:transparent}
+.program .button.toggle {float:right; width:130px; margin:0px !important; padding:2px; background-color:transparent}
 .program .button.toggle span.toggleleft {width: 30px;}
 .program .button.toggle span.toggleright {width: 30px;}
 .minibutton {
