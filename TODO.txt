@@ -13,18 +13,8 @@ Features:
 ===========
 ===Add text describing "usage" under Stations settings.
 
-===Add field for notes on the respective pages/stations.
-Would like an area where one can record notes about setup, adjustments, or other information which you might want to reference in the future. Setup notes, station soil and vegetations types, exposure, things to check next time you are in the system, et cetera.
-
-===Graphical map of zones
-Graphical map of zones, eye candy
-
-===Station Types
-See if station type can use RF as done with Opensprinkler-pi and Brian Koblenz's SIP fork https://github.com/bkoblenz/HVAC/blob/master/sip.py
-
-===Flow meter
-Tally flow
-Leak inspect as done with Opensprinkler-pi and Brian Koblenz's SIP fork https://github.com/bkoblenz/HVAC/blob/master/sip.py(as done with 
+===Add field for notes on the respective pages
+Would like an area where one can record notes about setup, adjustments, or other information which you might want to reference in the future.
 
 ===Compressor blowout plugin for winterization
 ==Create plugin which can be used to automatically run a blowout routine
