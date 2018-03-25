@@ -386,7 +386,6 @@ jQuery(document).ready(function(){
     $if inputs.rain_sensed():
         <span class="rainsense">$_('Rain sensed')</span>
     <br>
-    <br>
     <a href="/action?manual_mode=${'0' if options.manual_mode else '1'}" class="button toggle choice ${'off' if options.manual_mode else 'on'}"><span class='toggleleft'>$_('Schedule')</span><span class='togglesep'>&nbsp;</span><span class='toggleright'>$_('Manual')</span></a>
     $if not options.manual_mode:
         <br>
