@@ -1,6 +1,28 @@
 OSPy Changelog
 ====
 
+Apr 11 2018
+----------
+(martinpihrt)<br/>
+Changes:<br/>
+OSPy-plugins/plugins/air_temp_humi/ and /plugins/lcd_display/ 
+Add print from 6 sensors to LCD plugin. Fixed errors. Translations to Czech.
+
+Apr 6 2018
+----------
+(martinpihrt)<br/>
+Changes:<br/>
+OSPy-plugins/plugins/air_temp_humi/ new HW2 board plugin DS18B20 
+Add labels for DS1-6 sensors. Fixed errors. Change structure for log file.
+
+Mar 25 2018
+----------
+(martinpihrt)<br/>
+Changes:<br/>
+OSPy/ospy/programs.py
+Fixed the missing space in the text "Weather Schedule" and the following string of days.
+Thanks https://github.com/lthill
+
 Dec 28 2017
 ----------
 (martinpihrt)<br/>
