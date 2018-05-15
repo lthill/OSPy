@@ -5,25 +5,26 @@ TODO List for OSPy
 # Features
 ## Add text describing "usage" under Stations settings.
 
-## Add field for notes on the respective pages/stations.
+### Add field for notes on the respective pages/stations.
 Would like an area where one can record notes about setup, adjustments, or other information which 
 you might want to reference in the future. Setup notes, station soil and vegetations types, 
 exposure, things to check next time you are in the system, et cetera.
 
-## Graphical map of zones
+### Graphical map of zones
 Graphical map of zones, eye candy
 
-## Station Types
-See if station type can use RF as done with Opensprinkler-pi and Brian Koblenz's SIP fork 
+### Station Types
+See if station type can use RF as done with Opensprinkler-pi and Brian Koblenz's SIP fork
 https://github.com/bkoblenz/HVAC/blob/master/sip.py
+This may require moving to pigpio for faster IO 
 
-## Flow meter
+### Flow meter
 Tally flow
 Leak inspect as done with Opensprinkler-pi and Brian Koblenz's SIP fork 
-https://github.com/bkoblenz/HVAC/blob/master/sip.py(as done with 
+https://github.com/bkoblenz/HVAC/blob/master/sip.py
 
-## Compressor blowout plugin for winterization
-###Create plugin which can be used to automatically run a blowout routine
+### Compressor blowout plugin for winterization
+Create plugin which can be used to automatically run a blowout routine
 One should not have to waste an afternoon winterizing your sprinkler system when your sprinkler 
 controller can do it for you! Connect the compressor, select the program, and go do something else.
 
@@ -55,10 +56,10 @@ be suitable for signalling and/or run relay.
 
 
 # Tasks
-## Find watering months used by water company.
+### Find watering months used by water company.
 Sewage rates are set by consumption in non-watering months.
 
-## Diagnose "no location error" in weather based watering level plugin weather.py.
+### Diagnose "no location error" in weather based watering level plugin weather.py.
 1. Could not find location with zip code
 2. Could not find location with city
 3. Found location with geographic coordinates
