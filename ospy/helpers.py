@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""helper functions used in other OSPy modules"""
 
 __author__ = 'Rimco'
 
@@ -12,10 +13,12 @@ import errno
 import re
 from threading import Lock
 
-BRUTEFORCE_LOCK = Lock()
+BRUTEFORCE_LOCK = Lock() # Create thread lock object
 
 
 def del_rw(action, name, exc):
+    """change permissions and delete target 'path'"""
+    # 'action' and 'exc' unused
     import os
     import stat
     if os.path.exists(name):
@@ -27,10 +30,12 @@ def del_rw(action, name, exc):
 
 
 def now():
+    """ returns seconds in epoch + difference between local and UTC"""
     return time.time() + (datetime.datetime.now() - datetime.datetime.utcnow()).total_seconds()
 
 
 def try_float(val, default=0):
+    """Try converting to a float value, else return 0."""
     try:
         return float(val)
     except ValueError:
@@ -47,6 +52,7 @@ def datetime_string(timestamp=None):
 
 
 def two_digits(n):
+    """format 'n' as two digits with leading zero"""
     return '%02d' % int(n)
 
 
@@ -59,7 +65,7 @@ def program_delay(program):
 
 
 def formatTime(t):
-    from options import options
+    from ospy.options import options
     if options.time_format:
         return t
     else:
@@ -69,7 +75,7 @@ def formatTime(t):
             newhour = 12
         if hour > 12:
             newhour = hour-12
-        return str(newhour) + t[2:] + (" am" if hour<12 else " pm")
+        return str(newhour) + t[2:] + (" am" if hour < 12 else " pm")
 
 
 def themes():
@@ -78,6 +84,8 @@ def themes():
 
 
 def determine_platform():
+    """Determine which platform is running by trying to import the respective
+    GPIO libraries or platform name (Windows)."""
     import os
     try:
         import RPi.GPIO
@@ -97,6 +105,7 @@ def determine_platform():
 
 
 def get_rpi_revision():
+    """Determine RPi version"""
     try:
         import RPi.GPIO as GPIO
         return GPIO.RPI_REVISION
@@ -105,6 +114,13 @@ def get_rpi_revision():
 
 
 def reboot(wait=1, block=False):
+    """Provides orderly reboot of the OSPy machine. Module first spawns a new
+    thread which calls this module with the the 'block' flag set. When
+    block=True the server is shut down, stations cleared, and reboot begins via
+    a shell command.
+
+    wait    Time to wait after clearing stations before reboot process.
+    block   Flag used to initiate reboot."""
     if block:
         # Stop the web server first:
         from ospy import server
@@ -128,6 +144,13 @@ def reboot(wait=1, block=False):
 
 
 def poweroff(wait=1, block=False):
+    """Provides orderly power off of the OSPy machine. Module first spawns a new
+    thread which calls this module with the the 'block' flag set. When
+    block=True the server is shut down, stations cleared, and power off begins
+    via a shell command.
+
+    wait    Time to wait after clearing stations before power off process.
+    block   Flag used to initiate power off."""
     if block:
         # Stop the web server first:
         from ospy import server
@@ -151,6 +174,13 @@ def poweroff(wait=1, block=False):
 
 
 def restart(wait=1, block=False):
+    """Provides orderly restart of the OSPy server. Module first spawns a new
+    thread which calls this module with the the 'block' flag set. When
+    block=True the server is shut down, stations cleared, and current process
+    is replaced.
+
+    wait    Time to wait after clearing stations before reboot process.
+    block   Flag used to initiate reboot."""
     if block:
         # Stop the web server first:
         from ospy import server
@@ -182,19 +212,19 @@ def uptime():
         with open("/proc/uptime") as f:
             total_sec = float(f.read().split()[0])
             string = str(datetime.timedelta(seconds=total_sec)).split('.')[0]
-            
+
             from ospy.options import options
-            if (options.lang == 'cs_CZ'):
+            if options.lang == 'cs_CZ':
                 if total_sec < 172800:                          # <  1 day and 23:59
-                   string = string.replace('day', 'den')
+                    string = string.replace('day', 'den')
                 if total_sec >= 172800 and total_sec < 432000:  # <  4 days and 23:59
-                   string = string.replace('days', 'dny')
+                    string = string.replace('days', 'dny')
                 if total_sec >= 432000:                         # >  5 days and more
-                   string = string.replace('days', 'dnu')
-                
+                    string = string.replace('days', 'dnu')
+
     except Exception:
         from ospy.options import options
-        if (options.lang == 'cs_CZ'):
+        if options.lang == 'cs_CZ':
             string = 'Nelze zjistit'
         else:
             string = 'Unknown'
@@ -215,11 +245,11 @@ def get_ip():
 
     except Exception:
         from ospy.options import options
-        if (options.lang == 'cs_CZ'):
+        if options.lang == 'cs_CZ':
             string = 'Nelze zjistit'
         else:
             string = 'Unknown'
-        return string   
+        return string
 
 
 def get_mac():
@@ -229,9 +259,9 @@ def get_mac():
 
     except Exception:
         from ospy.options import options
-        if (options.lang == 'cs_CZ'):
+        if options.lang == 'cs_CZ':
             string = 'Nelze zjistit'
-        else:  
+        else:
             string = 'Unknown'
         return string
 
@@ -246,15 +276,15 @@ def get_meminfo():
 
     except Exception:
         from ospy.options import options
-        if (options.lang == 'cs_CZ'):
+        if options.lang == 'cs_CZ':       # change using internationalization?
             return {
-              'MemTotal': 'Nelze zjistit',
-              'MemFree': 'Nelze zjistit'
+                'MemTotal': 'Nelze zjistit',
+                'MemFree': 'Nelze zjistit'
             }
         else:
             return {
-              'MemTotal': 'Unknown',
-              'MemFree': 'Unknown'
+                'MemTotal': 'Unknown',
+                'MemFree': 'Unknown'
             }
 
 
@@ -310,6 +340,7 @@ def mkdir_p(path):
 
 
 def duration_str(total_seconds):
+    """Formats seconds into minutes:seconds"""
     minutes, seconds = divmod(total_seconds, 60)
     return '%02d:%02d' % (minutes, seconds)
 
@@ -404,6 +435,7 @@ def password_hash(password, salt):
 
 
 def test_password(password):
+    """Password entry control"""
     from ospy.options import options
 
     # Brute-force protection:
@@ -557,11 +589,12 @@ def get_help_file(id):
     except Exception:
         pass
 
-    return '' 
+    return ''
 
 def ASCI_convert(name):
-  if name == None:
-     return None
-  name = re.sub(r"[^A-Za-z0-9_+-.:?!/ ]+", ' ', name)
-  return name
-  
+    """Strip out all non-alpha numeric characters except
+    '_,+,-,.,:,?,!,/, '"""
+    if name == None:
+        return None
+    name = re.sub(r"[^A-Za-z0-9_+-.:?!/ ]+", ' ', name)
+    return name
